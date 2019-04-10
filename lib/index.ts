@@ -9,8 +9,19 @@ export interface DepTree {
   };
   depType?: 'prod' | 'dev';
   hasDevDependencies?: boolean;
-  targetFrameworks?: string[];
   missingLockFileEntry?: boolean;
+}
+
+export async function buildDepTree(
+  manifestFileContents: string,
+  lockFileContents: string,
+  includeDev = false,
+  lockfileType?: string,
+  strict = true,
+  defaultManifestFileName = "Gopkg.toml",
+): Promise<DepTree> {
+
+  throw new Error("Not implemented");
 }
 
 export async function buildDepTreeFromFiles(
