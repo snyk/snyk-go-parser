@@ -18,10 +18,10 @@ export async function buildDepTree(
   includeDev = false,
   lockfileType?: string,
   strict = true,
-  defaultManifestFileName = "Gopkg.toml",
+  defaultManifestFileName = 'Gopkg.toml',
 ): Promise<DepTree> {
 
-  throw new Error("Not implemented");
+  throw new Error('Not implemented');
 }
 
 export async function buildDepTreeFromFiles(
@@ -32,5 +32,5 @@ export async function buildDepTreeFromFiles(
   strict = true,
 ): Promise<DepTree> {
 
-  throw new Error("Not implemented");
+  throw new Error('Not implemented');
 }
