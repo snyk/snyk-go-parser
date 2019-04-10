@@ -1,16 +1,7 @@
-import * as path from 'path';
-import * as fs from 'fs';
+import * as fromFiles from './from-files';
+import { DepTree } from './types';
 
-export interface DepTree {
-  name: string;
-  version: string;
-  dependencies: {
-    [dep: string]: DepTree;
-  };
-  depType?: 'prod' | 'dev';
-  hasDevDependencies?: boolean;
-  missingLockFileEntry?: boolean;
-}
+
 
 export async function buildDepTree(
   manifestFileContents: string,
@@ -32,5 +23,5 @@ export async function buildDepTreeFromFiles(
   strict = true,
 ): Promise<DepTree> {
 
-  throw new Error('Not implemented');
+  return fromFiles.getDependencies(root, lockFilePath);
 }

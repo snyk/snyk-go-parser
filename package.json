@@ -3,7 +3,8 @@
   "description": "Generate a dep tree given a collection of manifests",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest",
+    "test": "tap -R spec --timeout=300 ./test/build-from-files/*.test.ts",
+    "test-jest": "jest",
     "lint": "tslint -p tsconfig.json",
     "build": "tsc",
     "build-watch": "tsc -w",
@@ -17,7 +18,7 @@
   "author": "snyk.io",
   "license": "Apache-2.0",
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "files": [
     "bin",
@@ -25,15 +26,21 @@
   ],
   "homepage": "https://github.com/snyk/snyk-go-parser#readme",
   "dependencies": {
+    "graphlib": "^2.1.7",
+    "tmp": "^0.1.0",
+    "toml": "^3.0.0",
     "tslib": "^1.9.3"
   },
   "devDependencies": {
-    "@types/node": "^6.14.3",
-    "ts-node": "7.0.0",
-    "tslint": "5.11.0",
-    "typescript": "^3.4.0",
+    "@types/graphlib": "^2.1.4",
     "@types/jest": "^23.3.13",
+    "@types/node": "^6.14.4",
+    "@types/tmp": "^0.1.0",
     "jest": "^23.6.0",
-    "ts-jest": "^23.10.5"
+    "tap": "^12.6.1",
+    "ts-jest": "^23.10.5",
+    "ts-node": "^8.0.3",
+    "tslint": "^5.15.0",
+    "typescript": "^3.4.2"
   }
 }

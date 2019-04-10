@@ -10,7 +10,8 @@
     "importHelpers": true,
     "strict": true,
     "strictNullChecks": false,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "noImplicitAny": false, // Temporary, to reuse code from snyk-go-plugin
   },
   "include": [
     "./lib/**/*"
