@@ -13,6 +13,6 @@ This parser processes a Go language manifest files and returns a set of dependen
 
 ### Supported build systems:
 
-* **govendor** - in progress
-* **dep** - in progress
-* **Go modules** - TBD
+* **govendor**
+* **dep**
+* **Go modules** - planned, not supported yet
