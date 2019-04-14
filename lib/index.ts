@@ -1,4 +1,4 @@
-import { parseGoConfig } from './parser';
+import { parseGoConfig, GoProjectConfig } from './parser';
 import { GoPackageManagerType } from './types';
 
 interface DepDict {
@@ -16,7 +16,7 @@ export { GoPackageManagerType };
 // To be reused in snyk-go-plugin.
 // The plugin, used by Snyk CLI, also scans source files and thus is able to produce
 // a proper dependency graph.
-export { parseGoConfig };
+export { parseGoConfig, GoProjectConfig };
 
 // Build dep tree from the manifest/lock files only.
 // This does not scan the source code for imports, so it's not accurate;
