@@ -10,7 +10,7 @@ interface LockedDeps {
   [dep: string]: LockedDep;
 }
 
-interface GoProjectConfig {
+export interface GoProjectConfig {
   ignoredPkgs: string[];
   lockedVersions: LockedDeps;
   packageName?: string;
