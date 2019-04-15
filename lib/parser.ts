@@ -2,6 +2,8 @@ import * as toml from 'toml';
 import { InvalidUserInputError } from './errors/';
 import { GoProjectConfig, LockedDeps } from './types';
 
+// TODO(kyegupov): split into go-dep-parser and go-vendor-parser files
+
 export function parseGoPkgConfig(manifestFileContents: string, lockFileContents: string): GoProjectConfig {
   if (!manifestFileContents && !lockFileContents) {
     throw new InvalidUserInputError('Gopkg.lock and Gopkg.toml file contents are empty');
@@ -100,13 +102,13 @@ interface VendorPackagesEntry {
 // TODO: branch, old Version can be a tag too?
 export function parseGovendorJsonContents(jsonStr: string): GoProjectConfig {
   try {
+    const gvJson = JSON.parse(jsonStr) as VendorJson;
+
     const goProjectConfig: GoProjectConfig = {
       ignoredPkgs: [] as string[],
       lockedVersions: {},
+      packageName: gvJson.rootPath!,
     };
-    const gvJson = JSON.parse(jsonStr) as VendorJson;
-
-    goProjectConfig.packageName = gvJson.rootPath;
 
     const packages = (gvJson.package || gvJson.Package);
     if (packages) {
@@ -130,8 +132,8 @@ export function parseGovendorJsonContents(jsonStr: string): GoProjectConfig {
       return s.indexOf('/') !== -1;
     }).forEach((pkgName) => {
       pkgName = pkgName.replace(/\/+$/, ''); // remove trailing /
-      goProjectConfig.ignoredPkgs.push(pkgName);
-      goProjectConfig.ignoredPkgs.push(pkgName + '/*');
+      goProjectConfig.ignoredPkgs!.push(pkgName);
+      goProjectConfig.ignoredPkgs!.push(pkgName + '/*');
     });
 
     return goProjectConfig;
