@@ -1,0 +1,27 @@
+{
+  "name": "root",
+  "version": "0.0.0",
+  "dependencies": {
+    "gitpub.com/food/salad": {
+      "name": "gitpub.com/food/salad",
+      "version": "v1.3.7",
+      "dependencies": {}
+    },
+    "gitpub.com/meal/dinner": {
+      "name": "gitpub.com/meal/dinner",
+      "version": "v0.0.7",
+      "dependencies": {}
+    },
+    "gitpub.cversionom/nature/vegetables/cucamba": {
+      "name": "gitpub.com/nature/vegetables/cucamba",
+      "version": "#b6ffb7d62206806b573348160795ea16a00940a6",
+      "dependencies": {}
+
+    },
+    "gitpub.com/nature/vegetables/tomato": {
+      "name": "gitpub.com/nature/vegetables/tomato",
+      "version": "#b6ffb7d62206806b573348160795ea16a00940a6",
+      "dependencies": {}
+    }
+  }
+}

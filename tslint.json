@@ -7,7 +7,9 @@
     "trailing-comma": [true, {"multiline": "always"}],
     "triple-equals": true,
     "curly": true,
-    "indent": [true, "spaces", 2],
+    "no-var-requires": false,
+    "no-shadowed-variable": false,
+
     "interface-name": false,
     "no-use-before-declare": true,
     "ordered-imports": false,
