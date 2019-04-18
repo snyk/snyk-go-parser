@@ -1,13 +1,12 @@
-import { buildDepTree } from '../lib';
+import { buildGoVendorDepTree } from '../lib';
 import * as fs from 'fs';
 
-const load = (filename) => JSON.parse(
-  fs.readFileSync(`${__dirname}/fixtures/${filename}`, 'utf8'),
-);
+const load = (filename: string) =>
+  fs.readFileSync(`${__dirname}/fixtures/${filename}`, 'utf8');
 
 it('govendor parsing works', async () => {
-	const exampleVendorJson = load('govendor/simple/exampleVendorJson.json');
-	const expectedDepTree = load('govendor/simple/exampleVendorJson.json');
-	const depTree = await buildDepTree(exampleVendorJson, 'govendor');
+	const exampleVendorJson = load('govendor/simple/vendor.json');
+	const expectedDepTree = JSON.parse(load('govendor/simple/expected-tree.json'));
+	const depTree = await buildGoVendorDepTree(exampleVendorJson);
 	expect(depTree).toEqual(expectedDepTree);
 });
