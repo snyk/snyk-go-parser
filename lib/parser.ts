@@ -1,41 +1,28 @@
 import * as toml from 'toml';
 import { InvalidUserInputError } from './errors/';
+import { GoProjectConfig, LockedDeps } from './types';
 
-interface LockedDep {
-  name: string;
-  version: string;
-}
-
-interface LockedDeps {
-  [dep: string]: LockedDep;
-}
-
-export interface GoProjectConfig {
-  ignoredPkgs: string[];
-  lockedVersions: LockedDeps;
-  packageName?: string;
-}
-
-interface DepManifest {
-  ignored: string[];
-}
-
-export function parseGoConfig(
-  packageManager: 'golangdep' | 'govendor',
-  manifestContents: string,
-  lockContents: string,
-): GoProjectConfig {
-  switch (packageManager) {
-    case 'golangdep':
-      const lockedVersions = parseDepLockContents(lockContents);
-      const manifest = parseDepManifestContents(manifestContents);
-      const ignoredPkgs = manifest.ignored;
-      return { lockedVersions, ignoredPkgs };
-    case 'govendor':
-      return parseGovendorJsonContents(manifestContents || lockContents);
-    default:
-      throw new Error('Unsupported package manager: ' + packageManager);
+export function parseGoPkgConfig(manifestFileContents: string, lockFileContents: string): GoProjectConfig {
+  if (!manifestFileContents && !lockFileContents) {
+    throw new InvalidUserInputError('Gopkg.lock and Gopkg.toml file contents are empty');
   }
+  if (!lockFileContents) {
+    throw new InvalidUserInputError('Gopkg.lock is empty, cannot proceed parsing');
+  }
+  const lockedVersions = parseDepLockContents(lockFileContents);
+  let ignoredPkgs: string[] = [];
+  if (manifestFileContents) {
+    const manifest = parseDepManifestContents(manifestFileContents);
+    ignoredPkgs = manifest.ignored;
+  }
+  return { lockedVersions, ignoredPkgs };
+}
+
+export function parseGoVendorConfig(manifestFileContents: string): GoProjectConfig {
+  if (!manifestFileContents) {
+    throw new InvalidUserInputError('vendor.json file contents are empty');
+  }
+  return parseGovendorJsonContents(manifestFileContents);
 }
 
 // https://golang.github.io/dep/docs/Gopkg.lock.html
@@ -74,6 +61,10 @@ function parseDepLockContents(lockFileString: string): LockedDeps {
   } catch (e) {
     throw new InvalidUserInputError('Gopkg.lock parsing failed with error ' + e.message);
   }
+}
+
+export interface DepManifest {
+  ignored: string[];
 }
 
 function parseDepManifestContents(manifestToml: string): DepManifest {

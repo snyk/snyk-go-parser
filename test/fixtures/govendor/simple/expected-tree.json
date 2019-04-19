@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "gitpub.com/food/salad": {
+      "dependencies": {},
+      "name": "gitpub.com/food/salad",
+      "version": "v1.3.7"
+    },
+    "gitpub.com/meal/dinner": {
+      "dependencies": {},
+      "name": "gitpub.com/meal/dinner",
+      "version": "v0.0.7"
+    },
+    "gitpub.com/nature/vegetables/cucamba": {
+      "dependencies": {},
+      "name": "gitpub.com/nature/vegetables/cucamba",
+      "version": "#b6ffb7d62206806b573348160795ea16a00940a6"
+    },
+    "gitpub.com/nature/vegetables/tomato": {
+      "dependencies": {},
+      "name": "gitpub.com/nature/vegetables/tomato",
+      "version": "#b6ffb7d62206806b573348160795ea16a00940a6"
+    }
+  },
+  "name": "github.com/snyk/awesomegoproject",
+  "version": "0.0.0"
+}
