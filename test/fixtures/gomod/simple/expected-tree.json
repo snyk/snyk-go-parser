@@ -1,0 +1,22 @@
+{
+  "name": "github.com/spf13/jwalterweatherman",
+  "version": "0.0.0",
+  "dependencies": {
+    "github.com/davecgh/go-spew": {
+      "name": "github.com/davecgh/go-spew",
+      "version": "v1.1.1"
+    },
+    "github.com/pmezard/go-difflib": {
+      "name": "github.com/pmezard/go-difflib",
+      "version": "v1.0.0"
+    },
+    "github.com/stretchr/testify": {
+      "name": "github.com/stretchr/testify",
+      "version": "v1.2.2"
+    },
+    "github.com/BurntSushi/toml": {
+      "name": "github.com/BurntSushi/toml",
+      "version": "#a368813c5e64"
+    }
+  }
+}

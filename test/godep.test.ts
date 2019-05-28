@@ -7,7 +7,7 @@ const load = (filename: string) =>
 it('Gopkg.lock returns expected tree', async () => {
   const exampleGoPkgLock = load('godep/simple/Gopkg.lock');
   const expectedDepTree = JSON.parse(load('godep/simple/expected-tree.json'));
-  const depTree = await buildGoPkgDepTree(null, exampleGoPkgLock);
+  const depTree = await buildGoPkgDepTree('', exampleGoPkgLock);
   expect(depTree).toEqual(expectedDepTree);
 });
 

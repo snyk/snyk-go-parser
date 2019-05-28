@@ -1,0 +1,66 @@
+{
+  "excludes": [
+    {
+      "moduleName": "github.com/SermoDigital/jose",
+      "version": {
+        "exactVersion": "v0.9.1",
+        "incompatible": false
+      }
+    }
+  ],
+  "moduleName": "github.com/spf13/jwalterweatherman",
+  "replaces": [
+    {
+      "newMod": {
+        "moduleName": "git.coolaj86.com/coolaj86/uuid.go",
+        "version": {
+          "exactVersion": "v1.1.1",
+          "incompatible": false
+        }
+      },
+      "oldMod": {
+        "moduleName": "github.com/google/uuid",
+        "version": {
+          "exactVersion": "v1.1.0",
+          "incompatible": false
+        }
+      }
+    }
+  ],
+  "requires": [
+    {
+      "indirect": true,
+      "moduleName": "github.com/davecgh/go-spew",
+      "version": {
+        "exactVersion": "v1.1.1",
+        "incompatible": false
+      }
+    },
+    {
+      "indirect": true,
+      "moduleName": "github.com/pmezard/go-difflib",
+      "version": {
+        "exactVersion": "v1.0.0",
+        "incompatible": false
+      }
+    },
+    {
+      "indirect": false,
+      "moduleName": "github.com/stretchr/testify",
+      "version": {
+        "exactVersion": "v1.2.2",
+        "incompatible": false
+      }
+    },
+    {
+      "indirect": false,
+      "moduleName": "github.com/BurntSushi/toml",
+      "version": {
+        "baseVersion": "v0.0.0",
+        "hash": "a368813c5e64",
+        "suffix": "",
+        "timestamp": "20170626110600"
+      }
+    }
+  ]
+}

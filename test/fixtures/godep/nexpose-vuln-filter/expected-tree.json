@@ -1,147 +1,118 @@
 {
   "dependencies": {
     "github.com/asecurityteam/logevent": {
-      "dependencies": {},
       "name": "github.com/asecurityteam/logevent",
       "version": "1.0.4"
     },
     "github.com/asecurityteam/logevent/http": {
-      "dependencies": {},
       "name": "github.com/asecurityteam/logevent/http",
       "version": "1.0.4"
     },
     "github.com/asecurityteam/runhttp": {
-      "dependencies": {},
       "name": "github.com/asecurityteam/runhttp",
       "version": "#60620809c4931ced5fde6400c2462236cf3e9c16"
     },
     "github.com/asecurityteam/serverfull/pkg": {
-      "dependencies": {},
       "name": "github.com/asecurityteam/serverfull/pkg",
       "version": "#81a2983288791c4aad176a3e98d809b925b65d90"
     },
     "github.com/asecurityteam/serverfull/pkg/domain": {
-      "dependencies": {},
       "name": "github.com/asecurityteam/serverfull/pkg/domain",
       "version": "#81a2983288791c4aad176a3e98d809b925b65d90"
     },
     "github.com/asecurityteam/serverfull/pkg/handlerfetcher": {
-      "dependencies": {},
       "name": "github.com/asecurityteam/serverfull/pkg/handlerfetcher",
       "version": "#81a2983288791c4aad176a3e98d809b925b65d90"
     },
     "github.com/asecurityteam/serverfull/pkg/handlers/v1": {
-      "dependencies": {},
       "name": "github.com/asecurityteam/serverfull/pkg/handlers/v1",
       "version": "#81a2983288791c4aad176a3e98d809b925b65d90"
     },
     "github.com/asecurityteam/settings": {
-      "dependencies": {},
       "name": "github.com/asecurityteam/settings",
       "version": "#d4142d59861b3779aeba32111096d43ae940e49d"
     },
     "github.com/aws/aws-lambda-go/lambda": {
-      "dependencies": {},
       "name": "github.com/aws/aws-lambda-go/lambda",
       "version": "v1.9.0"
     },
     "github.com/aws/aws-lambda-go/lambda/handlertrace": {
-      "dependencies": {},
       "name": "github.com/aws/aws-lambda-go/lambda/handlertrace",
       "version": "v1.9.0"
     },
     "github.com/aws/aws-lambda-go/lambda/messages": {
-      "dependencies": {},
       "name": "github.com/aws/aws-lambda-go/lambda/messages",
       "version": "v1.9.0"
     },
     "github.com/aws/aws-lambda-go/lambdacontext": {
-      "dependencies": {},
       "name": "github.com/aws/aws-lambda-go/lambdacontext",
       "version": "v1.9.0"
     },
     "github.com/davecgh/go-spew/spew": {
-      "dependencies": {},
       "name": "github.com/davecgh/go-spew/spew",
       "version": "v1.1.1"
     },
     "github.com/fatih/structs": {
-      "dependencies": {},
       "name": "github.com/fatih/structs",
       "version": "v1.1.0"
     },
     "github.com/go-chi/chi": {
-      "dependencies": {},
       "name": "github.com/go-chi/chi",
       "version": "v3.3.4"
     },
     "github.com/go-chi/chi/middleware": {
-      "dependencies": {},
       "name": "github.com/go-chi/chi/middleware",
       "version": "v3.3.4"
     },
     "github.com/go-yaml/yaml": {
-      "dependencies": {},
       "name": "github.com/go-yaml/yaml",
       "version": "v2.2.2"
     },
     "github.com/golang/mock/gomock": {
-      "dependencies": {},
       "name": "github.com/golang/mock/gomock",
       "version": "v1.2.0"
     },
     "github.com/pmezard/go-difflib/difflib": {
-      "dependencies": {},
       "name": "github.com/pmezard/go-difflib/difflib",
       "version": "v1.0.0"
     },
     "github.com/rs/xhandler": {
-      "dependencies": {},
       "name": "github.com/rs/xhandler",
       "version": "v1.0"
     },
     "github.com/rs/xstats": {
-      "dependencies": {},
       "name": "github.com/rs/xstats",
       "version": "#c67367528e160e557423e4d87059614d8c31a582"
     },
     "github.com/rs/xstats/dogstatsd": {
-      "dependencies": {},
       "name": "github.com/rs/xstats/dogstatsd",
       "version": "#c67367528e160e557423e4d87059614d8c31a582"
     },
     "github.com/rs/zerolog": {
-      "dependencies": {},
       "name": "github.com/rs/zerolog",
       "version": "v1.13.0"
     },
     "github.com/rs/zerolog/internal/cbor": {
-      "dependencies": {},
       "name": "github.com/rs/zerolog/internal/cbor",
       "version": "v1.13.0"
     },
     "github.com/rs/zerolog/internal/json": {
-      "dependencies": {},
       "name": "github.com/rs/zerolog/internal/json",
       "version": "v1.13.0"
     },
     "github.com/spf13/cast": {
-      "dependencies": {},
       "name": "github.com/spf13/cast",
       "version": "v1.3.0"
     },
     "github.com/stretchr/testify/assert": {
-      "dependencies": {},
       "name": "github.com/stretchr/testify/assert",
       "version": "v1.3.0"
     },
     "github.com/stretchr/testify/require": {
-      "dependencies": {},
       "name": "github.com/stretchr/testify/require",
       "version": "v1.3.0"
     },
     "golang.org/x/net/context": {
-      "dependencies": {},
       "name": "golang.org/x/net/context",
       "version": "#e3b2ff56ed879efa686c9d09ed74f9bfe42f1a1d"
     }

@@ -9,7 +9,6 @@
     "declaration": true,
     "importHelpers": true,
     "strict": true,
-    "strictNullChecks": false,
     "downlevelIteration": true,
     "noUnusedLocals": true,
 
