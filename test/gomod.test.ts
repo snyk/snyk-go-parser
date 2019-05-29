@@ -1,6 +1,6 @@
 import { buildGoModDepTree } from '../lib';
 import * as fs from 'fs';
-import { parseGoMod } from '../lib/gomod-parser';
+import { parseGoMod, buildDepTreeFromImports } from '../lib/gomod-parser';
 import { InvalidUserInputError } from '../lib/errors';
 
 const load = (filename: string) =>
@@ -45,4 +45,16 @@ it('gomod parsing fails on empty input', async () => {
   expect(() => buildGoModDepTree('')).toThrow(
     new InvalidUserInputError('No module name specified in go.mod file'),
   );
+});
+
+it('go list parsing produces first level dependencies', async () => {
+  const expectedDepTree = JSON.parse(load('gomod/import/expected-tree.json'));
+  const depTree = await buildDepTreeFromImports(`${__dirname}/fixtures/gomod/import`);
+  expect(depTree).toEqual(expectedDepTree);
+});
+
+it('go list parsing without .go files produces empty tree', async () => {
+  const expectedDepTree = JSON.parse(load('gomod/empty/expected-tree.json'));
+  const depTree = await buildDepTreeFromImports(`${__dirname}/fixtures/gomod/empty`);
+  expect(depTree).toEqual(expectedDepTree);
 });

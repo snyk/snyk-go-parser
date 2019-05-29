@@ -1,3 +1,5 @@
+import { spawn } from 'child_process';
+import * as os from 'os';
 import { InvalidUserInputError } from './errors';
 import {
   GoMod,
@@ -7,6 +9,8 @@ import {
   ModuleExactVersion,
   ModuleVersion,
   ModuleAndMaybeVersion,
+  DepTree,
+  GoPackage,
 } from './types';
 
 // go.mod file format:
@@ -172,4 +176,62 @@ export function toSnykVersion(v: ModuleVersion): string {
   } else {
     return (v as ModuleExactVersion).exactVersion;
   }
+}
+
+export async function buildDepTreeFromImports(path: string = '.') {
+  const depTree: DepTree = {
+    name: 'tempName', // TODO: How do get name of the module?
+    version: 'tempVersion', // TODO: How do get version of the module?
+    dependencies: {},
+  };
+  const goDepsOutput = await spawnGoListCommand(path);
+  if (goDepsOutput.includes('matched no packages')) {
+    return depTree;
+  }
+  const objectBorderRegexp = new RegExp(`}${os.EOL}{`, 'g');
+  const goDepsString = `[${goDepsOutput.replace(objectBorderRegexp, '},{')}]`;
+  const goDeps: GoPackage[] = JSON.parse(goDepsString);
+  const packageImports = extractImports(goDeps);
+
+  for (const packageImport of packageImports.values()) {
+    depTree.dependencies![packageImport] = {
+      name: packageImport,
+      version: '<versionFromParentModule>', // TODO: Propagation of vesion from module is a separate task
+    };
+  }
+
+  return depTree;
+}
+
+function extractImports(goDeps: GoPackage[]): Set<string> {
+  const goDepsImports = new Set<string>();
+  for (const module of goDeps) {
+    for (const packageImport of module.Imports) {
+      goDepsImports.add(packageImport);
+    }
+  }
+
+  return goDepsImports;
+}
+
+function spawnGoListCommand(path: string = '.'): Promise<string> {
+  return new Promise((resolve, reject) => {
+    let stdout = '';
+    let stderr = '';
+
+    const proc = spawn('go list', ['-json', './...'], { shell: true, cwd: path });
+    proc.stdout.on('data', (data) => {
+      stdout = stdout + data;
+    });
+    proc.stderr.on('data', (data) => {
+      stderr = stderr + data;
+    });
+
+    proc.on('close', (code) => {
+      if (code !== 0) {
+        return reject(stdout || stderr);
+      }
+      resolve(stdout || stderr);
+    });
+  });
 }
