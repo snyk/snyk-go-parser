@@ -40,7 +40,7 @@ function parseModuleAndVersion(lineRemainder: string): ModuleAndVersion {
   return {moduleName, version: parseVersion(versionString)};
 }
 
-function parseVersion(versionString: string): ModuleVersion {
+export function parseVersion(versionString: string): ModuleVersion {
   const maybeRegexMatch = rePseudoVersion.exec(versionString);
   if (maybeRegexMatch) {
     const [baseVersion, suffix, timestamp, hash] = maybeRegexMatch.slice(1);

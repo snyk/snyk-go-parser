@@ -1,6 +1,6 @@
 import { parseGoPkgConfig, parseGoVendorConfig } from './parser';
-import { parseGoMod, toSnykVersion } from './gomod-parser';
-import { DepTree, GoPackageManagerType, GoProjectConfig } from './types';
+import { parseGoMod, toSnykVersion, parseVersion } from './gomod-parser';
+import { DepTree, GoPackageManagerType, GoProjectConfig, ModuleVersion } from './types';
 
 interface DepDict {
   [dep: string]: DepTree;
@@ -17,7 +17,7 @@ export { GoPackageManagerType };
 // To be reused in snyk-go-plugin.
 // The plugin, used by Snyk CLI, also scans source files and thus is able to produce
 // a proper dependency graph.
-export { parseGoPkgConfig, parseGoVendorConfig, GoProjectConfig };
+export { parseGoPkgConfig, parseGoVendorConfig, GoProjectConfig, ModuleVersion, toSnykVersion, parseVersion };
 
 // TODO(kyegupov): make all build* functions sync
 // TODO(kyegupov): pin down the types for "options"
