@@ -1,6 +1,6 @@
 import { parseGoPkgConfig, parseGoVendorConfig } from './parser';
 import { parseGoMod, toSnykVersion, parseVersion } from './gomod-parser';
-import { DepTree, GoPackageManagerType, GoProjectConfig, ModuleVersion } from './types';
+import { DepTree, GoPackageManagerType, GoProjectConfig, ModuleVersion, GoMod } from './types';
 
 interface DepDict {
   [dep: string]: DepTree;
@@ -17,7 +17,16 @@ export { GoPackageManagerType };
 // To be reused in snyk-go-plugin.
 // The plugin, used by Snyk CLI, also scans source files and thus is able to produce
 // a proper dependency graph.
-export { parseGoPkgConfig, parseGoVendorConfig, GoProjectConfig, ModuleVersion, toSnykVersion, parseVersion };
+export {
+  parseGoPkgConfig,
+  parseGoVendorConfig,
+  GoProjectConfig,
+  ModuleVersion,
+  toSnykVersion,
+  parseVersion,
+  GoMod,
+  parseGoMod,
+};
 
 // TODO(kyegupov): make all build* functions sync
 // TODO(kyegupov): pin down the types for "options"
@@ -39,29 +48,6 @@ export async function buildGoVendorDepTree(
   manifestFileContents: string,
   options?: unknown): Promise<DepTree> {
   return buildGoDepTree(parseGoVendorConfig(manifestFileContents));
-}
-
-// We are not using go.sum file here because it's not actually a lockfile and contains dependencies
-// that are actually long gone.
-export function buildGoModDepTree(
-  manifestFileContents: string,
-  options?: unknown,
-): DepTree {
-  // We actually use only some bits of the go.mod contents
-  const goMod = parseGoMod(manifestFileContents);
-  const depTree: DepTree = {
-    name: goMod.moduleName,
-    version: '0.0.0',
-    dependencies: {},
-  };
-  const dependencies = depTree.dependencies!;
-  for (const req of goMod.requires) {
-    dependencies[req.moduleName] = {
-      name: req.moduleName,
-      version: toSnykVersion(req.version),
-    };
-  }
-  return depTree;
 }
 
 function buildGoDepTree(goProjectConfig: GoProjectConfig) {
