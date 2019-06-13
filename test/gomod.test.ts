@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { parseGoMod } from '../lib/gomod-parser';
+import { parseGoMod, toSnykVersion, parseVersion } from '../lib/gomod-parser';
 import { InvalidUserInputError } from '../lib/errors';
 
 const load = (filename: string) =>
@@ -30,4 +30,14 @@ it('gomod parsing fails on empty input', async () => {
   expect(() => parseGoMod('')).toThrow(
     new InvalidUserInputError('No module name specified in go.mod file'),
   );
+});
+
+it('toSnykVersion exact version', async () => {
+  expect(toSnykVersion(parseVersion('v1.2.3')))
+    .toEqual('1.2.3');
+});
+
+it('toSnykVersion exact version', async () => {
+  expect(toSnykVersion(parseVersion('v0.0.0-20180207000608-0eeff89b0690')))
+    .toEqual('#0eeff89b0690');
 });

@@ -170,6 +170,6 @@ export function toSnykVersion(v: ModuleVersion): string {
   if (hash) {
     return '#' + hash;
   } else {
-    return (v as ModuleExactVersion).exactVersion;
+    return (v as ModuleExactVersion).exactVersion.replace(/^v/, '');
   }
 }
