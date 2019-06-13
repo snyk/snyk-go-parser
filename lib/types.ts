@@ -1,4 +1,4 @@
-export type GoPackageManagerType = 'golangdep' | 'govendor' | 'gomod';
+export type GoPackageManagerType = 'golangdep' | 'govendor' | 'gomodules';
 
 export interface LockedDep {
   name: string;
