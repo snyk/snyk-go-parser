@@ -1,6 +1,7 @@
-import { parseGoPkgConfig, parseGoVendorConfig } from './parser';
-import { parseGoMod, toSnykVersion, parseVersion } from './gomod-parser';
-import { DepTree, GoPackageManagerType, GoProjectConfig, ModuleVersion, GoMod } from './types';
+import { parseGoPkgConfig, parseGoVendorConfig, parseGoModGraph } from './parsers';
+import {
+  DepTree, GoPackageManagerType, GoPackageConfig, ModuleVersion, GoModuleConfig, DEFAULT_INITIAL_VERSION,
+} from './types';
 
 export { GoPackageManagerType };
 
@@ -10,12 +11,10 @@ export { GoPackageManagerType };
 export {
   parseGoPkgConfig,
   parseGoVendorConfig,
-  GoProjectConfig,
+  parseGoModGraph,
+  GoPackageConfig,
   ModuleVersion,
-  toSnykVersion,
-  parseVersion,
-  GoMod,
-  parseGoMod,
+  GoModuleConfig,
 };
 
 // TODO(kyegupov): make all build* functions sync
@@ -36,14 +35,14 @@ export async function buildGoPkgDepTree(
 // in particular, it cannot build the proper dependency graph (only a flat list).
 export async function buildGoVendorDepTree(
   manifestFileContents: string,
-  options?: unknown): Promise<DepTree> {
+): Promise<DepTree> {
   return buildGoDepTree(parseGoVendorConfig(manifestFileContents));
 }
 
-function buildGoDepTree(goProjectConfig: GoProjectConfig) {
+function buildGoDepTree(goProjectConfig: GoPackageConfig) {
   const depTree: DepTree = {
     name: goProjectConfig.packageName || 'root',
-    version: '0.0.0',
+    version: DEFAULT_INITIAL_VERSION,
     dependencies: {},
   };
   const dependencies = depTree.dependencies!;
