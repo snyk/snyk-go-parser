@@ -1,6 +1,17 @@
 import { parseGoPkgConfig, parseGoVendorConfig } from './parser';
 import { parseGoMod, toSnykVersion, parseVersion } from './gomod-parser';
-import { DepTree, GoPackageManagerType, GoProjectConfig, ModuleVersion, GoMod } from './types';
+import { parseGoModGraph } from './gomod-graph-parser';
+import { DepTree, GoPackageManagerType, GoPackageConfig, ModuleVersion, GoModuleConfig } from './types';
+
+// interface DepDict {
+//   [dep: string]: DepTree;
+// }
+//
+// export interface DepTree {
+//   name: string;
+//   version: string;
+//   dependencies?: DepDict;
+// }
 
 export { GoPackageManagerType };
 
@@ -10,11 +21,12 @@ export { GoPackageManagerType };
 export {
   parseGoPkgConfig,
   parseGoVendorConfig,
-  GoProjectConfig,
+  parseGoModGraph,
+  GoPackageConfig,
   ModuleVersion,
   toSnykVersion,
   parseVersion,
-  GoMod,
+  GoModuleConfig,
   parseGoMod,
 };
 
@@ -39,8 +51,14 @@ export async function buildGoVendorDepTree(
   options?: unknown): Promise<DepTree> {
   return buildGoDepTree(parseGoVendorConfig(manifestFileContents));
 }
+//
+// export async function buildGoModulesDepTree(
+//     manifestFileContents: string,
+//     options?: unknown) {
+//   return buildGoDepTree(parseGoMod(manifestFileContents));
+// }
 
-function buildGoDepTree(goProjectConfig: GoProjectConfig) {
+function buildGoDepTree(goProjectConfig: GoPackageConfig) {
   const depTree: DepTree = {
     name: goProjectConfig.packageName || 'root',
     version: '0.0.0',

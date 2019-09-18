@@ -1,6 +1,6 @@
 import { InvalidUserInputError } from './errors';
 import {
-  GoMod,
+  GoModuleConfig,
   ModuleAndVersion,
   Require,
   ModulePseudoVersion,
@@ -86,7 +86,7 @@ function updateParserState(line: string, state: ParserState): ParserState & {lin
   }
 }
 
-function processLineForDirective(verb: Verb, lineRemainder: string, res: GoMod, lineNumber: number) {
+function processLineForDirective(verb: Verb, lineRemainder: string, res: GoModuleConfig, lineNumber: number) {
   try {
     switch (verb) {
     case 'module':
@@ -124,11 +124,11 @@ because of error: ${e}`);
   }
 }
 
-export function parseGoMod(goModStr: string): GoMod {
+export function parseGoMod(goModStr: string): GoModuleConfig {
   try {
     const lines = goModStr.split('\n');
 
-    const res: GoMod = {
+    const res: GoModuleConfig = {
       moduleName: '',
       requires: [],
       replaces: [],

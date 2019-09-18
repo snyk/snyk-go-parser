@@ -9,14 +9,14 @@ export interface LockedDeps {
   [dep: string]: LockedDep;
 }
 
-export interface GoProjectConfig {
+export interface GoPackageConfig {
   ignoredPkgs?: string[];
   lockedVersions: LockedDeps;
   packageName?: string;
 }
 
 // See https://github.com/golang/vgo/blob/master/vendor/cmd/go/internal/modfile/rule.go
-export interface GoMod {
+export interface GoModuleConfig {
   moduleName: string;
   golangVersion?: string;
   requires: Require[];
