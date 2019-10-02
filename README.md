@@ -11,8 +11,8 @@ Snyk helps you find, fix and monitor for known vulnerabilities in your dependenc
 
 This parser processes a Go language manifest files and returns a set of dependencies.
 
-### Supported build systems:
+### Supported package managers:
 
 * **govendor**
 * **dep**
-* **Go modules** - planned, not supported yet
+* **modules**
