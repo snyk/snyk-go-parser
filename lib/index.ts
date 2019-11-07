@@ -2,16 +2,6 @@ import { parseGoPkgConfig, parseGoVendorConfig } from './parser';
 import { parseGoMod, toSnykVersion, parseVersion } from './gomod-parser';
 import { DepTree, GoPackageManagerType, GoProjectConfig, ModuleVersion, GoMod } from './types';
 
-interface DepDict {
-  [dep: string]: DepTree;
-}
-
-export interface DepTree {
-  name: string;
-  version: string;
-  dependencies?: DepDict;
-}
-
 export { GoPackageManagerType };
 
 // To be reused in snyk-go-plugin.
