@@ -17,7 +17,7 @@
   "author": "snyk.io",
   "license": "Apache-2.0",
   "engines": {
-    "node": ">=4"
+    "node": ">=8"
   },
   "files": [
     "bin",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@types/jest": "^23.3.14",
-    "@types/node": "^6.14.4",
+    "@types/node": "^8.10.65",
     "jest": "^23.6.0",
     "ts-jest": "^23.10.5",
     "ts-node": "7.0.0",
