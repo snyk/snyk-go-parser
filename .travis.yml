@@ -4,9 +4,9 @@ language: node_js
 notifications:
   email: false
 node_js:
+  - "12"
   - "10"
   - "8"
-  - "6"
 cache:
   directories:
     - node_modules
