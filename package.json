@@ -4,11 +4,14 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
-    "lint": "tslint -p tsconfig.json",
     "lint:fix": "tslint -p tsconfig.json --fix",
     "build": "tsc",
     "build-watch": "tsc -w",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "format:check": "prettier --check {lib,tests,scripts}/**/*.{js,ts}",
+    "format": "prettier --write {lib,tests,scripts}/**/*.{js,ts}",
+    "lint": "npm run format:check && npm run format:eslint",
+    "format:eslint":"eslint --cache . --ext .js,.ts"
   },
   "types": "./dist/index.d.ts",
   "repository": {
@@ -31,6 +34,11 @@
     "tslib": "^1.10.0"
   },
   "devDependencies": {
+    "prettier": "^1.18.2",
+    "eslint-config-prettier": "^6.7.0",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
+    "eslint": "^6.8.0",
     "@types/jest": "^23.3.14",
     "@types/node": "^8.10.65",
     "jest": "^23.6.0",
