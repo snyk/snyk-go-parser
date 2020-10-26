@@ -1,17 +1,23 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
-    "pretty": true,
-    "lib": ["es2015"],
-    "target": "es2015",
+    /* Basic Options */
+    "target": "es2019",
     "module": "commonjs",
+    "allowJs": true,
     "sourceMap": true,
-    "declaration": true,
-    "importHelpers": true,
+    "outDir": "./dist",
+    "incremental": true,
+    "pretty": true,
+
+    /* Strict Type-Checking Options */
     "strict": true,
-    "downlevelIteration": true,
+    "noImplicitAny": false,
+    "alwaysStrict": false,
+
+    /* Additional Checks */
     "noUnusedLocals": true,
 
+    "esModuleInterop": false
   },
   "include": [
     "./lib/**/*"

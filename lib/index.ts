@@ -1,6 +1,15 @@
-import { parseGoPkgConfig, parseGoVendorConfig, parseGoModGraph } from './parsers';
 import {
-  DepTree, GoPackageManagerType, GoPackageConfig, ModuleVersion, GoModuleConfig, DEFAULT_INITIAL_VERSION,
+  parseGoPkgConfig,
+  parseGoVendorConfig,
+  parseGoModGraph,
+} from './parsers';
+import {
+  DepTree,
+  GoPackageManagerType,
+  GoPackageConfig,
+  ModuleVersion,
+  GoModuleConfig,
+  DEFAULT_INITIAL_VERSION,
 } from './types';
 
 export { GoPackageManagerType };
@@ -26,8 +35,11 @@ export {
 export async function buildGoPkgDepTree(
   manifestFileContents: string,
   lockFileContents: string,
-  options?: unknown): Promise<DepTree> {
-  return buildGoDepTree(parseGoPkgConfig(manifestFileContents, lockFileContents));
+  options?: unknown,
+): Promise<DepTree> {
+  return buildGoDepTree(
+    parseGoPkgConfig(manifestFileContents, lockFileContents),
+  );
 }
 
 // Build dep tree from the manifest/lock files only.
