@@ -5,6 +5,7 @@
   "scripts": {
     "test": "jest",
     "lint": "tslint -p tsconfig.json",
+    "lint:fix": "tslint -p tsconfig.json --fix",
     "build": "tsc",
     "build-watch": "tsc -w",
     "prepare": "npm run build"
@@ -25,6 +26,7 @@
   ],
   "homepage": "https://github.com/snyk/snyk-go-parser#readme",
   "dependencies": {
+    "@snyk/dep-graph": "^1.20.0",
     "toml": "^3.0.0",
     "tslib": "^1.10.0"
   },
