@@ -15,15 +15,23 @@ export function parseGoModGraph(
   projectName: string,
   projectVersion: string = DEFAULT_INITIAL_VERSION,
 ): DepGraph {
-  const rootPkgInfo = { name: projectName, version: projectVersion };
-  const depGraph = new DepGraphBuilder({ name: GO_MODULES }, rootPkgInfo);
+  const rootPkgInfo = {
+    name: projectName.length ? projectName : '',
+    version: projectVersion,
+  };
+  let depGraph = new DepGraphBuilder({ name: GO_MODULES }, rootPkgInfo);
 
   for (const line of goModGraphOutput.trim().split('\n')) {
     const [
       [parentName, parentVersion = DEFAULT_INITIAL_VERSION],
       [childName, childVersion],
     ] = parseGoModGraphLine(line);
+    if (!rootPkgInfo.name?.length) {
+      rootPkgInfo.name = parentName; // On first iteration we populate w/ the module name
 
+      // If we updated the package name, we should update to a new DepGraphBuilder
+      depGraph = new DepGraphBuilder({ name: GO_MODULES }, rootPkgInfo);
+    }
     const parentPkg: PkgInfo = { name: parentName, version: parentVersion };
     const childPkg: PkgInfo = {
       name: childName,
