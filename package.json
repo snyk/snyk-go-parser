@@ -11,7 +11,7 @@
     "format:check": "prettier --check {lib,tests,scripts}/**/*.{js,ts}",
     "format": "prettier --write {lib,tests,scripts}/**/*.{js,ts}",
     "lint": "npm run format:check && npm run format:eslint",
-    "format:eslint":"eslint --cache . --ext .js,.ts"
+    "format:eslint": "eslint --cache . --ext .js,.ts"
   },
   "types": "./dist/index.d.ts",
   "repository": {
