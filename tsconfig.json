@@ -8,6 +8,7 @@
     "outDir": "./dist",
     "incremental": true,
     "pretty": true,
+    "declaration": true,
 
     /* Strict Type-Checking Options */
     "strict": true,
