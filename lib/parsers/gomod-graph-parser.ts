@@ -15,10 +15,13 @@ export function parseGoModGraph(
   projectName: string,
   projectVersion: string = DEFAULT_INITIAL_VERSION,
 ): DepGraph {
-  const iterationReadyGraph = goModGraphOutput.trim().split('\n');
-  const moduleName = iterationReadyGraph[0].split(/\s/)[0];
+  const iterationReadyGraph = goModGraphOutput
+    .trim()
+    .split('\n')
+    .filter(Boolean);
+  const moduleName = iterationReadyGraph[0]?.split(/\s/)[0];
   const rootPkgInfo = {
-    name: projectName || moduleName,
+    name: projectName || moduleName || 'empty',
     version: projectVersion,
   };
   const depGraph = new DepGraphBuilder({ name: GO_MODULES }, rootPkgInfo);
