@@ -12,3 +12,14 @@ it('simple example: gomod parsing', async () => {
   const expectedGraph = createFromJSON(JSON.parse(load(path.join('gomod', 'simple', 'expected-graph.json'))));
   expect(goModGraph.equals(expectedGraph, {compareRoot: true})).toBe(true);
 });
+
+it('empty example: gomod parsing', async () => {
+  const exampleGoMod = load(path.join('gomod', 'empty', 'gomodgraph'));
+  const goModGraph = parseGoModGraph(exampleGoMod, '');
+  const expectedGraph = createFromJSON(JSON.parse(load(path.join('gomod', 'empty', 'expected-graph.json'))));
+  try {
+    expect(goModGraph.equals(expectedGraph, {compareRoot: true})).toBe(true);
+  } catch (e) {
+    expect(goModGraph.toJSON()).toEqual(expectedGraph.toJSON());
+  }
+});
