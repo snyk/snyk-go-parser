@@ -195,6 +195,8 @@ require (
 	vbom.ml/util v0.0.0-20160121211510-db5cfe13f5cc
 )
 
+replace k8s.io/api => ./staging/src/k8s.io/api
+
 replace (
 	bitbucket.org/bertimus9/systemstat => bitbucket.org/bertimus9/systemstat v0.0.0-20180207000608-0eeff89b0690
 	cloud.google.com/go => cloud.google.com/go v0.34.0
@@ -428,7 +430,6 @@ replace (
 	gopkg.in/yaml.v1 => gopkg.in/yaml.v1 v1.0.0-20140924161607-9f9df34309c0
 	gopkg.in/yaml.v2 => gopkg.in/yaml.v2 v2.2.1
 	gotest.tools => gotest.tools v2.2.0+incompatible
-	k8s.io/api => ./staging/src/k8s.io/api
 	k8s.io/apiextensions-apiserver => ./staging/src/k8s.io/apiextensions-apiserver
 	k8s.io/apimachinery => ./staging/src/k8s.io/apimachinery
 	k8s.io/apiserver => ./staging/src/k8s.io/apiserver
