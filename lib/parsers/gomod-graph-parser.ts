@@ -12,7 +12,7 @@ function parseGoModGraphLine(line: string): string[][] {
 
 export function parseGoModGraph(
   goModGraphOutput: string,
-  projectName: string,
+  projectName?: string,
   projectVersion: string = DEFAULT_INITIAL_VERSION,
 ): DepGraph {
   const iterationReadyGraph = goModGraphOutput
