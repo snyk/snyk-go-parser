@@ -23,3 +23,13 @@ it('empty example: gomod parsing', async () => {
     expect(goModGraph.toJSON()).toEqual(expectedGraph.toJSON());
   }
 });
+it('prefix versioning support', async () => {
+  const exampleGoMod = load(path.join('gomod', 'semver-prefixed', 'gomodgraph'));
+  const goModGraph = parseGoModGraph(exampleGoMod, '');
+  const expectedGraph = createFromJSON(JSON.parse(load(path.join('gomod', 'semver-prefixed', 'expected-graph.json'))));
+  try {
+    expect(goModGraph.equals(expectedGraph, {compareRoot: true})).toBe(true);
+  } catch (e) {
+    expect(goModGraph.toJSON()).toEqual(expectedGraph.toJSON());
+  }
+});
