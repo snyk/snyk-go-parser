@@ -1,13 +1,19 @@
 import { DepGraphBuilder, DepGraph, PkgInfo } from '@snyk/dep-graph';
 import { DEFAULT_INITIAL_VERSION, DEFAULT_ROOT_NODE_NAME } from '../types';
 
+// Modules can be of shape `modules/snyk/inner/v2` or `modules/snyk/v2/inner`
+const GO_SEMVER_PREFIXED_MODULES_REGEX = /(.*)\/v[0-9]+(.*)/;
 const GO_MODULES = 'gomodules';
 
 function parseGoModGraphLine(line: string): string[][] {
   return line
     .trim()
     .split(/\s/)
-    .map((item) => item.split('@'));
+    .map((item) => item.split('@'))
+    .map(([name, v]) => {
+      // Handle cases for prefixed-semver, see https://golang.org/ref/mod#major-version-suffixes
+      return [name.replace(GO_SEMVER_PREFIXED_MODULES_REGEX, '$1$2'), v];
+    });
 }
 
 export function parseGoModGraph(
