@@ -40,7 +40,7 @@ export async function buildGoPkgDepTree(
   options?: unknown,
 ): Promise<DepTree> {
   return buildGoDepTree(
-    parseGoPkgConfig(manifestFileContents, lockFileContents),
+    await parseGoPkgConfig(manifestFileContents, lockFileContents),
   );
 }
 
@@ -50,7 +50,7 @@ export async function buildGoPkgDepTree(
 export async function buildGoVendorDepTree(
   manifestFileContents: string,
 ): Promise<DepTree> {
-  return buildGoDepTree(parseGoVendorConfig(manifestFileContents));
+  return buildGoDepTree(await parseGoVendorConfig(manifestFileContents));
 }
 
 function buildGoDepTree(goProjectConfig: GoPackageConfig) {

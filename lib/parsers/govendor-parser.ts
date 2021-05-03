@@ -1,8 +1,11 @@
 import { GoPackageConfig } from '../types';
 import { InvalidUserInputError } from '../errors';
 import { VendorJson } from './types';
+import { eventLoopSpinner } from 'event-loop-spinner';
 
-function parseGovendorJsonContents(jsonStr: string): GoPackageConfig {
+async function parseGovendorJsonContents(
+  jsonStr: string,
+): Promise<GoPackageConfig> {
   try {
     const gvJson = JSON.parse(jsonStr) as VendorJson;
 
@@ -14,7 +17,7 @@ function parseGovendorJsonContents(jsonStr: string): GoPackageConfig {
 
     const packages = gvJson.package || gvJson.Package;
     if (packages) {
-      packages.forEach((pkg) => {
+      for (const pkg of packages) {
         const revision =
           pkg.revision || pkg.Revision || pkg.version || pkg.Version;
 
@@ -26,21 +29,26 @@ function parseGovendorJsonContents(jsonStr: string): GoPackageConfig {
         };
 
         goProjectConfig.lockedVersions[dep.name] = dep;
-      });
+
+        if (eventLoopSpinner.isStarving()) {
+          await eventLoopSpinner.spin();
+        }
+      }
     }
 
     const ignores = gvJson.ignore || '';
-    ignores
-      .split(/\s/)
-      .filter((s) => {
-        // otherwise it's a build-tag rather than a pacakge
-        return s.indexOf('/') !== -1;
-      })
-      .forEach((pkgName) => {
-        pkgName = pkgName.replace(/\/+$/, ''); // remove trailing /
-        goProjectConfig.ignoredPkgs!.push(pkgName);
-        goProjectConfig.ignoredPkgs!.push(pkgName + '/*');
-      });
+    for (let pkgName of ignores.split(/\s/)) {
+      if (pkgName.indexOf('/') === -1) {
+        continue; // it's a build-tag rather than a pacakge
+      }
+      pkgName = pkgName.replace(/\/+$/, ''); // remove trailing /
+      goProjectConfig.ignoredPkgs!.push(pkgName);
+      goProjectConfig.ignoredPkgs!.push(pkgName + '/*');
+
+      if (eventLoopSpinner.isStarving()) {
+        await eventLoopSpinner.spin();
+      }
+    }
 
     return goProjectConfig;
   } catch (e) {
@@ -50,9 +58,9 @@ function parseGovendorJsonContents(jsonStr: string): GoPackageConfig {
   }
 }
 
-export function parseGoVendorConfig(
+export async function parseGoVendorConfig(
   manifestFileContents: string,
-): GoPackageConfig {
+): Promise<GoPackageConfig> {
   if (!manifestFileContents) {
     throw new InvalidUserInputError('vendor.json file contents are empty');
   }

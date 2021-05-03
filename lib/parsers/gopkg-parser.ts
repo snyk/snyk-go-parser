@@ -3,8 +3,11 @@ import { GoPackageConfig, LockedDeps } from '../types';
 import * as toml from 'toml';
 import { InvalidUserInputError } from '../errors';
 import { DepManifest, GopkgLockEntry } from './types';
+import { eventLoopSpinner } from 'event-loop-spinner';
 
-function parseDepLockContents(lockFileString: string): LockedDeps {
+async function parseDepLockContents(
+  lockFileString: string,
+): Promise<LockedDeps> {
   try {
     const lockJson = toml.parse(lockFileString) as {
       projects: GopkgLockEntry[];
@@ -12,10 +15,10 @@ function parseDepLockContents(lockFileString: string): LockedDeps {
 
     const deps: LockedDeps = {};
     if (lockJson.projects) {
-      lockJson.projects.forEach((proj) => {
+      for (const proj of lockJson.projects) {
         const version = proj.version || '#' + proj.revision;
 
-        proj.packages.forEach((subpackageName) => {
+        for (const subpackageName of proj.packages) {
           const name =
             subpackageName === '.'
               ? proj.name
@@ -27,8 +30,12 @@ function parseDepLockContents(lockFileString: string): LockedDeps {
           };
 
           deps[dep.name] = dep;
-        });
-      });
+
+          if (eventLoopSpinner.isStarving()) {
+            await eventLoopSpinner.spin();
+          }
+        }
+      }
     }
     return deps;
   } catch (e) {
@@ -52,10 +59,10 @@ function parseDepManifestContents(manifestToml: string): DepManifest {
   }
 }
 
-export function parseGoPkgConfig(
+export async function parseGoPkgConfig(
   manifestFileContents: string,
   lockFileContents: string,
-): GoPackageConfig {
+): Promise<GoPackageConfig> {
   if (!manifestFileContents && !lockFileContents) {
     throw new InvalidUserInputError(
       'Gopkg.lock and Gopkg.toml file contents are empty',
@@ -66,7 +73,7 @@ export function parseGoPkgConfig(
       'Gopkg.lock is empty, cannot proceed parsing',
     );
   }
-  const lockedVersions = parseDepLockContents(lockFileContents);
+  const lockedVersions = await parseDepLockContents(lockFileContents);
   let ignoredPkgs: string[] = [];
   if (manifestFileContents) {
     const manifest = parseDepManifestContents(manifestFileContents);
