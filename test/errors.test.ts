@@ -13,8 +13,8 @@ new InvalidUserInputError('vendor.json parsing failed with error Unexpected toke
 it('godep parsing fails on invalid input', async () => {
   const exampleGopkglock = '((rangom garbage, certainly not a JSON))';
   expect(buildGoPkgDepTree('', exampleGopkglock)).rejects.toThrow(
-    new InvalidUserInputError('Gopkg.lock parsing failed with error ' +
-    `Expected "#", "'", "[", "\\"", "\\n", "\\r", [ \\t], [A-Za-z0-9_\\-] or end of input but "(" found.`),
+      // tslint:disable-next-line:max-line-length
+      /Gopkg.lock parsing failed with error Unknown character "40" at row 1, col 2, pos 1:\n1> \(\(rangom garbage, certainly not a JSON\)\)/g,
   );
 });
 
