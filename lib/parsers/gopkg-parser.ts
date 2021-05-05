@@ -1,6 +1,6 @@
 // https://golang.github.io/dep/docs/Gopkg.lock.html
 import { GoPackageConfig, LockedDeps } from '../types';
-import * as toml from 'toml';
+import * as toml from '@iarna/toml';
 import { InvalidUserInputError } from '../errors';
 import { DepManifest, GopkgLockEntry } from './types';
 import { eventLoopSpinner } from 'event-loop-spinner';
@@ -9,7 +9,7 @@ async function parseDepLockContents(
   lockFileString: string,
 ): Promise<LockedDeps> {
   try {
-    const lockJson = toml.parse(lockFileString) as {
+    const lockJson = ((await toml.parse.async(lockFileString)) as unknown) as {
       projects: GopkgLockEntry[];
     };
 
@@ -47,7 +47,7 @@ async function parseDepLockContents(
 
 function parseDepManifestContents(manifestToml: string): DepManifest {
   try {
-    const manifestJson = toml.parse(manifestToml) || {};
+    const manifestJson: any = toml.parse(manifestToml) || {};
 
     manifestJson.ignored = manifestJson.ignored || [];
 
