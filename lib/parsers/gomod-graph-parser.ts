@@ -25,9 +25,8 @@ export function parseGoModGraph(
     .trim()
     .split('\n')
     .filter(Boolean);
-  const moduleName = iterationReadyGraph[0]?.split(/\s/)[0];
   const rootPkgInfo = {
-    name: projectName || moduleName || 'empty',
+    name: projectName || getModuleName(iterationReadyGraph[0]),
     version: projectVersion,
   };
   const depGraph = new DepGraphBuilder({ name: GO_MODULES }, rootPkgInfo);
@@ -56,4 +55,9 @@ export function parseGoModGraph(
   }
 
   return depGraph.build();
+}
+
+function getModuleName(firstLine = '') {
+  const [[moduleName]] = parseGoModGraphLine(firstLine);
+  return moduleName || 'empty';
 }
