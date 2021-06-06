@@ -1,4 +1,4 @@
-module github.com/snyk/snyko
+module github.com/snyk/snyko/v3
 
 go 1.15
 
