@@ -11,6 +11,7 @@ export function parseGoModRelativeManifestReplaces(
   }
 
   return replaceSection
+    .replace(/\/\/.*/g, '') // remove all comments
     .split('\n') // now we got lines of "ModulePath" => "ModulePath" | "FilePath"
     .map((line) => line.trim().split(GO_MOD_DELIMITER)) // split lines by ' => '
     .filter(([, filePath]) => relativePathRegex.test(filePath))
