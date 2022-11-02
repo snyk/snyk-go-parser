@@ -12,7 +12,10 @@ function parseGoModGraphLine(line: string): string[][] {
     .map((item) => item.split('@'))
     .map(([name, v]) => {
       // Handle cases for prefixed-semver, see https://golang.org/ref/mod#major-version-suffixes
-      return [name.replace(GO_SEMVER_PREFIXED_MODULES_REGEX, '$1$2'), v];
+      return [
+        name.replace(GO_SEMVER_PREFIXED_MODULES_REGEX, '$1$2'),
+        normalizeVersion(v),
+      ];
     });
 }
 
@@ -60,4 +63,25 @@ export function parseGoModGraph(
 function getModuleName(firstLine = '') {
   const [[moduleName]] = parseGoModGraphLine(firstLine);
   return moduleName || 'empty';
+}
+
+function extractHash(version: string): string {
+  return version.split('-').pop() || version;
+}
+
+export function normalizeVersion(version: string): string {
+  if (!version) {
+    return version;
+  }
+
+  // https://go.dev/ref/mod#pseudo-versions
+  const isPseudoVersion = /.*(([0-9]{4})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])(2[0-3]|[01][0-9])([0-5][0-9])([0-5][0-9]))-.*/.test(
+    version,
+  );
+
+  if (isPseudoVersion) {
+    version = `#${extractHash(version)}`;
+  }
+
+  return version;
 }
