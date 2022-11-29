@@ -2,7 +2,6 @@ import * as fs from 'fs';
 import { parseGoModGraph, } from '../lib';
 import { createFromJSON } from '@snyk/dep-graph';
 import * as path from 'path';
-import {normalizeVersion} from '../lib/parsers/gomod-graph-parser';
 
 const load = (filename: string) =>
     fs.readFileSync(`${__dirname}/fixtures/${filename}`, 'utf8');
@@ -24,7 +23,6 @@ it('empty example: gomod parsing', async () => {
     expect(goModGraph.toJSON()).toEqual(expectedGraph.toJSON());
   }
 });
-
 it('prefix versioning support', async () => {
   const exampleGoMod = load(path.join('gomod', 'semver-prefixed', 'gomodgraph'));
   const goModGraph = parseGoModGraph(exampleGoMod, '');
@@ -34,22 +32,4 @@ it('prefix versioning support', async () => {
   } catch (e) {
     expect(goModGraph.toJSON()).toEqual(expectedGraph.toJSON());
   }
-});
-
-describe('normalizeVersion fn', () => {
-  const cases = [
-    ['vX.0.0-20220126234351-abcdefabcdef', '#abcdefabcdef'],
-    ['vX.Y.Z-pre.0.20220126234351-abcdefabcdef', '#abcdefabcdef'],
-    ['vX.Y.(Z+1)-0.20220126234351-abcdefabcdef', '#abcdefabcdef'],
-    ['v0.0.1', 'v0.0.1'],
-    ['v0.0.1-0', 'v0.0.1-0'],
-    ['v0.0.1-beta.2', 'v0.0.1-beta.2'],
-    ['', ''],
-    [undefined, undefined],
-
-  ];
-
-  it.each(cases)('normalizeVersion(%s) should return %s', (email, expected) => {
-    expect(normalizeVersion(email)).toEqual(expected);
-  });
 });
