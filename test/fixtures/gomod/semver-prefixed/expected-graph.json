@@ -21,7 +21,7 @@
       {
         "deps": [
           {
-            "nodeId": "golang.org/x/xerrors@#9bdfabe68543"
+            "nodeId": "golang.org/x/xerrors@v0.0.0-20191204190536-9bdfabe68543"
           }
         ],
         "nodeId": "github.com/dgrijalva/jwt-go@v4.0.0-preview1",
@@ -29,8 +29,8 @@
       },
       {
         "deps": [],
-        "nodeId": "golang.org/x/xerrors@#9bdfabe68543",
-        "pkgId": "golang.org/x/xerrors@#9bdfabe68543"
+        "nodeId": "golang.org/x/xerrors@v0.0.0-20191204190536-9bdfabe68543",
+        "pkgId": "golang.org/x/xerrors@v0.0.0-20191204190536-9bdfabe68543"
       }
     ],
     "rootNodeId": "root-node"
@@ -61,10 +61,10 @@
       }
     },
     {
-      "id": "golang.org/x/xerrors@#9bdfabe68543",
+      "id": "golang.org/x/xerrors@v0.0.0-20191204190536-9bdfabe68543",
       "info": {
         "name": "golang.org/x/xerrors",
-        "version": "#9bdfabe68543"
+        "version": "v0.0.0-20191204190536-9bdfabe68543"
       }
     }
   ],
