@@ -3,6 +3,7 @@ import {
   parseGoVendorConfig,
   parseGoModGraph,
   parseGoModRelativeManifestReplaces,
+  parseGoModVersionDirective,
 } from './parsers';
 import {
   DepTree,
@@ -23,6 +24,7 @@ export {
   parseGoVendorConfig,
   parseGoModGraph,
   parseGoModRelativeManifestReplaces,
+  parseGoModVersionDirective,
   GoPackageConfig,
   ModuleVersion,
   GoModuleConfig,

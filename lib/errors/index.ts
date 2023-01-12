@@ -1,4 +1,5 @@
 export { InvalidUserInputError } from './invalid-user-input-error';
+export { MissingGoModVersionDirectiveError } from './missing-go-mod-version-directive-error';
 
 // Other common parser error types:
 
