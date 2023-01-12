@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`go mod suite parseGoModRelativeManifestReplaces should return all relative manifest files 1`] = `
-Array [
+[
   "./staging/src/k8s.io/api",
   "./staging/src/k8s.io/apiextensions-apiserver",
   "./staging/src/k8s.io/apimachinery",

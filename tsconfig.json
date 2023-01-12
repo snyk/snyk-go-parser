@@ -18,7 +18,8 @@
     /* Additional Checks */
     "noUnusedLocals": true,
 
-    "esModuleInterop": false
+    "esModuleInterop": false,
+    "useUnknownInCatchVariables": false
   },
   "include": [
     "./lib/**/*"
