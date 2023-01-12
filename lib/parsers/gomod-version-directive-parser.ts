@@ -18,7 +18,7 @@ export function parseGoModVersionDirective(
     if (strict) {
       // No strict version was found, and we needed one to be defined.
       throw new MissingGoModVersionDirectiveError(
-        'go.mod file must have a go version directive and must match format 1.23',
+        'go.mod file must have a go version directive and must match format {major}.{minor} (e.g. 1.23)',
       );
     }
     return undefined;
