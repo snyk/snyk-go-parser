@@ -11,7 +11,7 @@ const GoVersionRE = /^go\s(?<version>([1-9][0-9]*)\.(0|[1-9][0-9]*))/m;
 export function parseGoModVersionDirective(
   goModFileContent: string,
   strict = true,
-): string | undefined | MissingGoModVersionDirectiveError {
+): string | undefined {
   const version = GoVersionRE.exec(goModFileContent);
 
   if (!version) {
@@ -23,6 +23,5 @@ export function parseGoModVersionDirective(
     }
     return undefined;
   }
-
   return version[1];
 }
