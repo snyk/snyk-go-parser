@@ -53,7 +53,7 @@ async function parseGovendorJsonContents(
     return goProjectConfig;
   } catch (e) {
     throw new InvalidUserInputError(
-      'vendor.json parsing failed with error ' + e.message,
+      'vendor.json parsing failed with error ' + (e as any).message,
     );
   }
 }

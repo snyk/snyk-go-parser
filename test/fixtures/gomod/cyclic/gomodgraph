@@ -1,0 +1,8 @@
+com.example/app github.com/example/a@v1.0.0
+com.example/app github.com/example/e@v1.0.0
+github.com/example/a@v1.0.0 github.com/example/b@v1.0.0
+github.com/example/a@v1.0.0 github.com/example/c@v1.0.0
+github.com/example/b@v1.0.0 github.com/example/d@v1.0.0
+github.com/example/c@v1.0.0 github.com/example/b@v1.0.0
+github.com/example/e@v1.0.0 github.com/example/b@v1.0.0
+github.com/example/e@v1.0.0 github.com/example/c@v1.0.0

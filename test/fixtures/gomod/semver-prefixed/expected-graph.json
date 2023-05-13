@@ -1,40 +1,5 @@
 {
-  "graph": {
-    "nodes": [
-      {
-        "deps": [
-          {
-            "nodeId": "github.com/dgrijalva/jwt-go@v3.2.0+incompatible"
-          },
-          {
-            "nodeId": "github.com/dgrijalva/jwt-go@v4.0.0-preview1"
-          }
-        ],
-        "nodeId": "root-node",
-        "pkgId": "github.com/snyk/snyko@0.0.0"
-      },
-      {
-        "deps": [],
-        "nodeId": "github.com/dgrijalva/jwt-go@v3.2.0+incompatible",
-        "pkgId": "github.com/dgrijalva/jwt-go@v3.2.0+incompatible"
-      },
-      {
-        "deps": [
-          {
-            "nodeId": "golang.org/x/xerrors@v0.0.0-20191204190536-9bdfabe68543"
-          }
-        ],
-        "nodeId": "github.com/dgrijalva/jwt-go@v4.0.0-preview1",
-        "pkgId": "github.com/dgrijalva/jwt-go@v4.0.0-preview1"
-      },
-      {
-        "deps": [],
-        "nodeId": "golang.org/x/xerrors@v0.0.0-20191204190536-9bdfabe68543",
-        "pkgId": "golang.org/x/xerrors@v0.0.0-20191204190536-9bdfabe68543"
-      }
-    ],
-    "rootNodeId": "root-node"
-  },
+  "schemaVersion": "1.3.0",
   "pkgManager": {
     "name": "gomodules"
   },
@@ -44,13 +9,6 @@
       "info": {
         "name": "github.com/snyk/snyko",
         "version": "0.0.0"
-      }
-    },
-    {
-      "id": "github.com/dgrijalva/jwt-go@v3.2.0+incompatible",
-      "info": {
-        "name": "github.com/dgrijalva/jwt-go",
-        "version": "v3.2.0+incompatible"
       }
     },
     {
@@ -68,5 +26,32 @@
       }
     }
   ],
-  "schemaVersion": "1.2.0"
+  "graph": {
+    "rootNodeId": "root-node",
+    "nodes": [
+      {
+        "nodeId": "root-node",
+        "pkgId": "github.com/snyk/snyko@0.0.0",
+        "deps": [
+          {
+            "nodeId": "github.com/dgrijalva/jwt-go@v4.0.0-preview1"
+          }
+        ]
+      },
+      {
+        "nodeId": "github.com/dgrijalva/jwt-go@v4.0.0-preview1",
+        "pkgId": "github.com/dgrijalva/jwt-go@v4.0.0-preview1",
+        "deps": [
+          {
+            "nodeId": "golang.org/x/xerrors@v0.0.0-20191204190536-9bdfabe68543"
+          }
+        ]
+      },
+      {
+        "nodeId": "golang.org/x/xerrors@v0.0.0-20191204190536-9bdfabe68543",
+        "pkgId": "golang.org/x/xerrors@v0.0.0-20191204190536-9bdfabe68543",
+        "deps": []
+      }
+    ]
+  }
 }
