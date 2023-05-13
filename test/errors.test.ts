@@ -6,21 +6,25 @@ import { InvalidUserInputError } from '../lib/errors';
 it('govendor parsing fails on invalid input', async () => {
   const exampleVendorJson = '((rangom garbage, certainly not a JSON))';
   expect(buildGoVendorDepTree(exampleVendorJson)).rejects.toThrow(
-new InvalidUserInputError('vendor.json parsing failed with error Unexpected token ( in JSON at position 0'),
+    new InvalidUserInputError(
+      'vendor.json parsing failed with error Unexpected token ( in JSON at position 0',
+    ),
   );
 });
 
 it('godep parsing fails on invalid input', async () => {
   const exampleGopkglock = '((rangom garbage, certainly not a JSON))';
   expect(buildGoPkgDepTree('', exampleGopkglock)).rejects.toThrow(
-      // tslint:disable-next-line:max-line-length
-      /Gopkg.lock parsing failed with error Unknown character "40" at row 1, col 2, pos 1:\n1> \(\(rangom garbage, certainly not a JSON\)\)/g,
+    // tslint:disable-next-line:max-line-length
+    /Gopkg.lock parsing failed with error Unknown character "40" at row 1, col 2, pos 1:\n1> \(\(rangom garbage, certainly not a JSON\)\)/g,
   );
 });
 
 it('godep parsing fails when both files are empty', async () => {
   expect(buildGoPkgDepTree('', '')).rejects.toThrow(
-    new InvalidUserInputError('Gopkg.lock and Gopkg.toml file contents are empty'),
+    new InvalidUserInputError(
+      'Gopkg.lock and Gopkg.toml file contents are empty',
+    ),
   );
 });
 

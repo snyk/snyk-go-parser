@@ -14,7 +14,9 @@ it('Gopkg.lock returns expected tree', async () => {
 it('Gopkg.lock returns expected tree', async () => {
   const exampleGoPkgLock = load('godep/nexpose-vuln-filter/Gopkg.lock');
   const exampleGoPkgToml = load('godep/nexpose-vuln-filter/Gopkg.toml');
-  const expectedDepTree = JSON.parse(load('godep/nexpose-vuln-filter/expected-tree.json'));
+  const expectedDepTree = JSON.parse(
+    load('godep/nexpose-vuln-filter/expected-tree.json'),
+  );
   const depTree = await buildGoPkgDepTree(exampleGoPkgToml, exampleGoPkgLock);
   expect(depTree).toEqual(expectedDepTree);
 });

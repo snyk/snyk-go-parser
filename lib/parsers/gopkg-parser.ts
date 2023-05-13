@@ -9,7 +9,7 @@ async function parseDepLockContents(
   lockFileString: string,
 ): Promise<LockedDeps> {
   try {
-    const lockJson = ((await toml.parse.async(lockFileString)) as unknown) as {
+    const lockJson = (await toml.parse.async(lockFileString)) as unknown as {
       projects: GopkgLockEntry[];
     };
 

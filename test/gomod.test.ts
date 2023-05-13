@@ -12,9 +12,8 @@ const load = (filename: string) =>
 describe('go mod suite', () => {
   it('parseGoModRelativeManifestReplaces should return all relative manifest files', async () => {
     const exampleGoMod = load(path.join('gomod', 'big', 'go.mod'));
-    const relativeManifestFiles = parseGoModRelativeManifestReplaces(
-      exampleGoMod,
-    );
+    const relativeManifestFiles =
+      parseGoModRelativeManifestReplaces(exampleGoMod);
     expect(relativeManifestFiles).toMatchSnapshot();
   });
 
