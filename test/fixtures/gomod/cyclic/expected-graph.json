@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "1.3.0",
+  "pkgManager": {
+    "name": "gomodules"
+  },
+  "pkgs": [
+    {
+      "id": "com.example/app@0.0.0",
+      "info": {
+        "name": "com.example/app",
+        "version": "0.0.0"
+      }
+    },
+    {
+      "id": "github.com/example/a@v1.0.0",
+      "info": {
+        "name": "github.com/example/a",
+        "version": "v1.0.0"
+      }
+    },
+    {
+      "id": "github.com/example/b@v1.0.0",
+      "info": {
+        "name": "github.com/example/b",
+        "version": "v1.0.0"
+      }
+    },
+    {
+      "id": "github.com/example/d@v1.0.0",
+      "info": {
+        "name": "github.com/example/d",
+        "version": "v1.0.0"
+      }
+    },
+    {
+      "id": "github.com/example/c@v1.0.0",
+      "info": {
+        "name": "github.com/example/c",
+        "version": "v1.0.0"
+      }
+    },
+    {
+      "id": "github.com/example/e@v1.0.0",
+      "info": {
+        "name": "github.com/example/e",
+        "version": "v1.0.0"
+      }
+    }
+  ],
+  "graph": {
+    "rootNodeId": "root-node",
+    "nodes": [
+      {
+        "nodeId": "root-node",
+        "pkgId": "com.example/app@0.0.0",
+        "deps": [
+          {
+            "nodeId": "github.com/example/a@v1.0.0"
+          },
+          {
+            "nodeId": "github.com/example/e@v1.0.0"
+          }
+        ]
+      },
+      {
+        "nodeId": "github.com/example/a@v1.0.0",
+        "pkgId": "github.com/example/a@v1.0.0",
+        "deps": [
+          {
+            "nodeId": "github.com/example/b@v1.0.0"
+          },
+          {
+            "nodeId": "github.com/example/c@v1.0.0"
+          }
+        ]
+      },
+      {
+        "nodeId": "github.com/example/b@v1.0.0",
+        "pkgId": "github.com/example/b@v1.0.0",
+        "deps": [
+          {
+            "nodeId": "github.com/example/d@v1.0.0"
+          }
+        ]
+      },
+      {
+        "nodeId": "github.com/example/d@v1.0.0",
+        "pkgId": "github.com/example/d@v1.0.0",
+        "deps": []
+      },
+      {
+        "nodeId": "github.com/example/c@v1.0.0",
+        "pkgId": "github.com/example/c@v1.0.0",
+        "deps": [
+          {
+            "nodeId": "github.com/example/b@v1.0.0:pruned"
+          }
+        ]
+      },
+      {
+        "nodeId": "github.com/example/b@v1.0.0:pruned",
+        "pkgId": "github.com/example/b@v1.0.0",
+        "deps": [],
+        "info": {
+          "labels": {
+            "pruned": "true"
+          }
+        }
+      },
+      {
+        "nodeId": "github.com/example/e@v1.0.0",
+        "pkgId": "github.com/example/e@v1.0.0",
+        "deps": [
+          {
+            "nodeId": "github.com/example/b@v1.0.0"
+          },
+          {
+            "nodeId": "github.com/example/c@v1.0.0"
+          }
+        ]
+      }
+    ]
+  }
+}

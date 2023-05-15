@@ -9,7 +9,7 @@ async function parseDepLockContents(
   lockFileString: string,
 ): Promise<LockedDeps> {
   try {
-    const lockJson = ((await toml.parse.async(lockFileString)) as unknown) as {
+    const lockJson = (await toml.parse.async(lockFileString)) as unknown as {
       projects: GopkgLockEntry[];
     };
 
@@ -40,7 +40,7 @@ async function parseDepLockContents(
     return deps;
   } catch (e) {
     throw new InvalidUserInputError(
-      'Gopkg.lock parsing failed with error ' + e.message,
+      'Gopkg.lock parsing failed with error ' + (e as any).message,
     );
   }
 }
@@ -54,7 +54,7 @@ function parseDepManifestContents(manifestToml: string): DepManifest {
     return manifestJson;
   } catch (e) {
     throw new InvalidUserInputError(
-      'Gopkg.toml parsing failed with error ' + e.message,
+      'Gopkg.toml parsing failed with error ' + (e as any).message,
     );
   }
 }
