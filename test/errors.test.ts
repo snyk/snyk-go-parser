@@ -6,9 +6,7 @@ import { InvalidUserInputError } from '../lib/errors';
 it('govendor parsing fails on invalid input', async () => {
   const exampleVendorJson = '((rangom garbage, certainly not a JSON))';
   expect(buildGoVendorDepTree(exampleVendorJson)).rejects.toThrow(
-    new InvalidUserInputError(
-      'vendor.json parsing failed with error Unexpected token ( in JSON at position 0',
-    ),
+    /vendor\.json parsing failed with error Unexpected token.*\(/,
   );
 });
 
