@@ -3,3 +3,4 @@ export { parseGoVendorConfig } from './govendor-parser';
 export { parseGoPkgConfig } from './gopkg-parser';
 export { parseGoModRelativeManifestReplaces } from './gomod-relative-manifest-parser';
 export { parseGoModVersionDirective } from './gomod-version-directive-parser';
+export { parseGoSum } from './gosum-parser';

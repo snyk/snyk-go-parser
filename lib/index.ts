@@ -4,11 +4,14 @@ import {
   parseGoModGraph,
   parseGoModRelativeManifestReplaces,
   parseGoModVersionDirective,
+  parseGoSum,
 } from './parsers';
 import {
   DepTree,
   GoPackageManagerType,
   GoPackageConfig,
+  GoSumEntry,
+  GoSumEntries,
   ModuleVersion,
   GoModuleConfig,
   DEFAULT_INITIAL_VERSION,
@@ -25,7 +28,10 @@ export {
   parseGoModGraph,
   parseGoModRelativeManifestReplaces,
   parseGoModVersionDirective,
+  parseGoSum,
   GoPackageConfig,
+  GoSumEntry,
+  GoSumEntries,
   ModuleVersion,
   GoModuleConfig,
 };

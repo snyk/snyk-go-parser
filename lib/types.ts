@@ -65,5 +65,14 @@ export interface DepTree {
   };
 }
 
+export interface GoSumEntry {
+  h1?: string; // hash of the module's file tree, verbatim "h1:..." value from go.sum
+  goModH1?: string; // hash of the module's go.mod file, verbatim "h1:..." value
+}
+
+export interface GoSumEntries {
+  [moduleAtVersion: string]: GoSumEntry;
+}
+
 export const DEFAULT_INITIAL_VERSION = '0.0.0';
 export const DEFAULT_ROOT_NODE_NAME = 'root-node';
