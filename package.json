@@ -23,10 +23,15 @@
     "node": ">=20"
   },
   "files": [
-    "bin",
     "dist"
   ],
   "homepage": "https://github.com/snyk/snyk-go-parser#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/snyk/snyk-go-parser/issues"
+  },
   "dependencies": {
     "@iarna/toml": "^2.2.5",
     "@snyk/dep-graph": "^2.6.1",
